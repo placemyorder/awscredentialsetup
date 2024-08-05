@@ -1,0 +1,12 @@
+name: 'AWSCredentials Setup'
+description: 'Setup or clean aws credentials on build machine.'
+inputs:
+  branch:
+    description: 'The branch name'
+    required: true
+  versionfile:
+    description: 'Filepath of the version file'
+    required: true
+runs:
+  using: 'node20'
+  main: 'index.js'
