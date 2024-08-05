@@ -1,10 +1,12 @@
 param(
+    [parameter(Mandatory=$true)]
+    [String]$awsaccesssecret,
+    [parameter(Mandatory=$true)]
+    [String]$awsaccesskeyid
     [bool]$isCleanup = $false
 )
 
 #This is supposed to push the credentials into the build host
-$awsaccesssecret="$env:AWS_SECRET_ACCESS_KEY"
-$awsaccesskeyid="$env:AWS_ACCESS_KEY_ID"
 $homeDir="$HOME/.aws"
 $credentialfileName = "credentials"
 $credentialfilebackup ="credentials_bckp"
