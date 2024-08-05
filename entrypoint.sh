@@ -1,10 +1,16 @@
 #!/bin/bash
 
-isCleanup=${1:-false}
+# Ensure that mandatory parameters are provided
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: $0 <awsaccesssecret> <awsaccesskeyid> [isCleanup]"
+    exit 1
+fi
+
+awsaccesssecret="$1"
+awsaccesskeyid="$2"
+isCleanup=${3:-false}
 
 # This is supposed to push the credentials into the build host
-awsaccesssecret="$AWS_SECRET_ACCESS_KEY"
-awsaccesskeyid="$AWS_ACCESS_KEY_ID"
 homeDir="$HOME/.aws"
 credentialfileName="credentials"
 credentialfilebackup="credentials_bckp"

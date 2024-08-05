@@ -1,12 +1,15 @@
 name: 'AWSCredentials Setup'
 description: 'Setup or clean aws credentials on build machine.'
 inputs:
-  branch:
-    description: 'The branch name'
+  iscleanup:
+    description: 'Boolean value to indicate if need to create credentials or if this is a cleanup operation.'
     required: true
-  versionfile:
-    description: 'Filepath of the version file'
+  awsaccesskeyid:
+    description: 'The aws access key Id.'
     required: true
+  awsaccesssecret:
+    description: 'The aws access secret.'
+    required: true        
 runs:
   using: 'node20'
   main: 'index.js'

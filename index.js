@@ -9,7 +9,9 @@ const core = require('@actions/core');
 const spawn = require('child_process').spawn;
 const path = require("path");
 
-const isCleanup = core.getInput('iscleanup:');
+const awsaccesskeyId = core.getInput('awsaccesskeyid');
+const awsaccesssecret = core.getInput('awsaccesssecret');
+const isCleanup = core.getInput('iscleanup');
 const isCleanupBoolean = isCleanup.toLowerCase() === 'true';
 
 
@@ -28,7 +30,7 @@ const exec = (cmd, args=[]) => new Promise((resolve, reject) => {
 });
 
 const main = async () => {
-    await exec('bash', [path.join(__dirname, './entrypoint.sh'),isCleanupBoolean]);
+    await exec('bash', [path.join(__dirname, './entrypoint.sh'),awsaccesssecret,awsaccesskeyId,isCleanupBoolean]);
 };
 
 main().catch(err => {
