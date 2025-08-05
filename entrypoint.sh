@@ -2,13 +2,14 @@
 
 # Ensure that mandatory parameters are provided
 if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "Usage: $0 <awsaccesssecret> <awsaccesskeyid> [isCleanup]"
+    echo "Usage: $0 <awsaccesssecret> <awsaccesskeyid> <profilename> [isCleanup]"
     exit 1
 fi
 
 awsaccesssecret="$1"
 awsaccesskeyid="$2"
-isCleanup=${3:-false}
+profilename="$3"
+isCleanup=${4:-false}
 
 # This is supposed to push the credentials into the build host
 homeDir="$HOME/.aws"
@@ -36,7 +37,7 @@ else
 
     touch "$credentialfile"
 
-    credentialfilecontent="[$TF_VAR_profilename]\naws_access_key_id = $awsaccesskeyid\naws_secret_access_key = $awsaccesssecret"
+    credentialfilecontent="[$profilename]\naws_access_key_id = $awsaccesskeyid\naws_secret_access_key = $awsaccesssecret"
 
     echo -e "$credentialfilecontent" > "$credentialfile"
 fi

@@ -9,7 +9,10 @@ inputs:
     required: true
   awsaccesssecret:
     description: 'The aws access secret.'
-    required: true        
+    required: true    
+  profilename:
+    description: 'The name of the profile.'
+    required: true            
 runs:
   using: 'node20'
   main: 'index.js'

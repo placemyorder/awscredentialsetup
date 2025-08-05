@@ -11,6 +11,7 @@ const path = require("path");
 
 const awsaccesskeyId = core.getInput('awsaccesskeyid');
 const awsaccesssecret = core.getInput('awsaccesssecret');
+const profilename = core.getInput('profilename');
 const isCleanup = core.getInput('iscleanup');
 const isCleanupBoolean = isCleanup.toLowerCase() === 'true';
 
@@ -30,7 +31,7 @@ const exec = (cmd, args=[]) => new Promise((resolve, reject) => {
 });
 
 const main = async () => {
-    await exec('bash', [path.join(__dirname, './entrypoint.sh'),awsaccesssecret,awsaccesskeyId,isCleanupBoolean]);
+    await exec('bash', [path.join(__dirname, './entrypoint.sh'),awsaccesssecret,awsaccesskeyId,profilename,isCleanupBoolean]);
 };
 
 main().catch(err => {
